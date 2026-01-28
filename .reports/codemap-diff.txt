@@ -1,16 +1,8 @@
-Codemap Update Report
-Generated: 2026-01-28
+Codemap Diff Report
+===================
+architecture.md: 26.95% changed
+frontend.md: 9.14% changed
+backend.md: 23.90% changed
+data.md: 30.85% changed
 
-Previous Version: None (First Generation)
-Current Version: 1.0.0
-Diff Percentage: 100% (New Documentation)
-
-Files Created:
-- docs/CODEMAPS/architecture.md
-- docs/CODEMAPS/backend.md
-- docs/CODEMAPS/frontend.md
-- docs/CODEMAPS/data.md
-
-Summary:
-Initial codemaps generated for the Warframe Usage Stats 2025 project.
-The analysis covers React 19/Vite 7 architecture, client-side data processing of the 2025 usage JSON, and the MR grouping logic.
+Average Diff: 22.71%

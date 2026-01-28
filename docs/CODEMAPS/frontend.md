@@ -2,24 +2,26 @@
 
 **Last Updated:** 2026-01-28
 **Framework:** React 19.2
-**Main Component:** /Users/tomchan/playground/wf-2025-stats/src/App.tsx
+**Main Component:** src/App.tsx
 
 ## UI Structure
 
-The UI is built using React functional components and styled with Tailwind CSS 4.
+The UI is built using React functional components with a focus on data visualization.
 
 ### Components
 
-- **`App`**: Current root component. It fetches experimental combined data and renders it as a JSON string for debug/verification.
-- **Charts (Pending Implementation)**: Recharts is available in dependencies for visual rendering.
-- **Icons**: Lucide-react is used for iconography.
+- **`App`**: Renders the `PopularityDashboard`.
+- **`PopularityDashboard`**: Manages category and MR range selection state. Use `useMemo` for data fetching optimization.
+- **`PopularityRow`**: Displays item details and a small `BarChart` for MR distribution.
+- **Icons**: Lucide-react (if used) or standard SVG.
 
 ## Design System
 
-- **Styling:** Tailwind CSS 4 using the new `@tailwindcss/vite` plugin.
-- **Utilities:** `cn()` utility in `src/utils/cn.ts` uses `clsx` and `tailwind-merge` for clean conditional class application.
+- **Styling:** Tailwind CSS 4.
+- **Utilities:** `cn()` for class merging.
+- **Responsiveness:** Tailwind's responsive prefixes (sm, md, lg).
 
 ## State Management
 
-- **Local State:** Currently minimal (direct data invocation).
-- **Redux:** `react-redux` and `redux` are present in `node_modules` (likely for future scale), but not yet utilized in the source code.
+- **Local State:** `useState` in `PopularityDashboard` for filters.
+- **Performance:** `useMemo` and `useCallback` used to prevent unnecessary re-renders in the data table.

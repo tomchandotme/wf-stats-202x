@@ -3,38 +3,19 @@
 **Last Updated:** 2026-01-28
 **Source:** `WarframeUsageData2025.json`
 
-## Data Model
+## Data Models (`src/types.ts`)
 
-The application processes Warframe usage statistics provided in a nested JSON format.
+- **`DataItem`**: Flat structure for UI consumption with aggregated MR ranges.
+- **`ItemUsage`**: Raw usage record (ALL + per-MR stats).
+- **`RootData`**: The top-level JSON structure.
+- **`MRRange`**: Union type (`"0-10" | "11-20" | "21+" | "ALL"`).
 
-### Schema (`src/types.ts`)
+## Constants (`src/constants.ts`)
 
-- **`RootData`**: Contains an `ALL` object with category keys.
-- **`CategoryData`**: A record of item names and their associated usage.
-- **`ItemUsage`**:
-  - `ALL`: Total usage float.
-  - `"0"..."36"`: Usage float indexed by Mastery Rank.
-- **`MRRangeUsage`**: Aggregated groups:
-  - `0-10`: Sum of MR 0-10.
-  - `11-20`: Sum of MR 11-20.
-  - `21+`: Sum of MR 21+.
-
-## Categories
-
-- `Melee`
-- `Primary`
-- `Secondary`
-- `Warframe`
+- **`MR_RANGES`**: Array of available ranges.
+- **`MR_COLORS`**: Color mapping for Recharts visualization.
 
 ## Transformations
 
-### Warframe Grouping
-
-The `getCombinedWarframeUsage` utility collapses variants into root names:
-
-- Input: `Excalibur`, `Excalibur Prime`, `Excalibur Umbra`
-- Output: `Excalibur/Prime/Umbra` (Summed usage)
-
-### MR Aggregation
-
-Granular MR levels (0-36) are bucketed into three main tiers for better visualization density.
+- **Bucketing**: Maps raw MR (0-36) strings to aggregated buckets.
+- **Name Normalization**: Used in Warframe grouping to strip " Prime" and " Umbra".

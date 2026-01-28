@@ -1,23 +1,24 @@
-# Backend/Server Codemap
+# Backend Logic Codemap (Client-side)
 
 **Last Updated:** 2026-01-28
-**Runtime:** Static Client-side Rendering (Vite)
+**Runtime:** Client-side Data Processing
 
 ## Overview
 
-This project does not have a traditional server-side backend. It is a static frontend application where the "backend" logic resides in client-side data processing utilities.
+Static frontend application where data processing utilities act as the "logic layer".
 
-## Data Processing API (Internal)
+## Key Utilities (`src/utils`)
 
-| Function                   | Purpose                                                   |
-| -------------------------- | --------------------------------------------------------- |
-| `getAllData`               | Returns the entire `ALL` category from the dataset.       |
-| `getCombinedWarframeUsage` | Aggregates base and variant (Prime/Umbra) Warframe usage. |
-| `aggregateMRUsage`         | Groups granular MR data into ranges: 0-10, 11-20, 21+.    |
-| `getAggregatedItemUsage`   | Combines item lookup with MR aggregation.                 |
+| Function | Purpose |
+|----------|---------|
+| `getTopItems` | Main entry point for fetching filtered and sorted item lists. |
+| `getCombinedWarframeUsage` | Merges Warframe variants (base, Prime, Umbra). |
+| `aggregateMRUsage` | Groups 0-36 MR data into 3 buckets. |
+| `getCategories` | Returns available categories from the dataset. |
 
-## Build and Deployment
+## Data Pipeline
 
-- **Build Tool:** Vite
-- **Static Assets:** The production build generates a static `dist/` folder.
-- **Data Bundle:** The 2025 usage JSON is bundled into the client-side assets during build.
+1. **Import**: JSON data imported as `RootData`.
+2. **Filter**: `getTopItems` filters by category.
+3. **Aggregate**: MR data is bucketed for visualization.
+4. **Sort**: Items are sorted by popularity based on the selected MR range.
