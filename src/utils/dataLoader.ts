@@ -5,7 +5,7 @@ import type {
   MRRange,
   DataItem,
 } from "../types";
-import urls from "../../urls.json";
+import urls from "../../data/urls.json";
 
 const dataCache: Record<number, RootData> = {};
 
@@ -24,7 +24,7 @@ export const loadDataForYear = async (year: number): Promise<RootData> => {
   try {
     // In a real Vite app, we might use import.meta.glob or fetch
     // But since this is a local environment, we can assume the files are in the public/root
-    const response = await fetch(`/WarframeUsageData${year}.json`);
+    const response = await fetch(`/data/WarframeUsageData${year}.json`);
     if (!response.ok) {
       throw new Error(`Failed to load data for ${year}`);
     }
@@ -166,7 +166,7 @@ export const getTopItemsWithTrends = (
     return currentRanked.slice(0, limit).map((item) => ({
       ...item,
       imageUrl: (urls as Record<string, string>)[item.name]
-        ? `https://warframe.com/static/img/items/${(urls as Record<string, string>)[item.name]}`
+        ? `https://cdn.warframestat.us/img/${(urls as Record<string, string>)[item.name]}`
         : undefined,
     }));
   }
@@ -176,13 +176,11 @@ export const getTopItemsWithTrends = (
     previousRanked.map((item) => [item.name, item.rank]),
   );
 
-  const slice = currentRanked.slice(0, limit).map((item) => ({
+  return currentRanked.slice(0, limit).map((item) => ({
     ...item,
     previousRank: previousRankMap.get(item.name),
     imageUrl: (urls as Record<string, string>)[item.name]
       ? `https://cdn.warframestat.us/img/${(urls as Record<string, string>)[item.name]}`
       : undefined,
   }));
-
-  return slice.map((v) => ({ ...v }));
 };
