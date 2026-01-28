@@ -20,5 +20,5 @@ items.forEach((v) => {
   }
 });
 
-await Bun.write("urls.json", JSON.stringify(urls, null, 2));
-console.log("urls.json written to root directory");
+await Bun.write("/data/urls.json", JSON.stringify(urls, null, 2));
+console.log("urls.json written to `/data` directory");

@@ -8,20 +8,22 @@ const PopularityDashboard = lazy(() =>
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
-      <main className="grow">
+    <div className="bg-background selection:bg-primary/20 flex min-h-screen flex-col">
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(200,164,92,0.03),transparent_40%)]" />
+      <main className="relative grow">
         <Suspense
           fallback={
             <div className="flex h-screen items-center justify-center">
-              <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"></div>
+              <div className="border-primary/20 border-t-primary h-8 w-8 animate-spin rounded-full border"></div>
             </div>
           }
         >
           <PopularityDashboard />
         </Suspense>
       </main>
-      <footer className="border-t p-8 text-center text-xs text-gray-400">
-        Data courtesy of Digital Extremes - Warframe Usage Data 2022-2025
+      <footer className="relative border-t border-white/5 p-8 text-center text-[9px] tracking-[0.2em] text-white/20 uppercase">
+        This is a fan-made project. All data and trademarks are property of
+        Digital Extremes.
       </footer>
     </div>
   );

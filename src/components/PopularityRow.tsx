@@ -8,7 +8,7 @@ import {
   Rectangle,
   type BarShapeProps,
 } from "recharts";
-import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { Minus, ArrowUp, ArrowDown } from "lucide-react";
 import { cn } from "../utils/cn";
 import { MR_COLORS } from "../constants";
 import type { DataItem, MRRange } from "../types";
@@ -26,9 +26,13 @@ const TooltipContent = React.memo(
     if (active && payload && payload.length) {
       const data = payload[0].payload as { name: string; val: number };
       return (
-        <div className="rounded border border-gray-200 bg-white p-1.5 text-[10px] shadow-sm">
-          <p className="font-bold text-gray-900">{data.name}</p>
-          <p className="text-gray-600">{Number(data.val).toFixed(4)}%</p>
+        <div className="bg-surface rounded border border-white/5 px-2 py-1.5 text-sm shadow-md backdrop-blur-sm">
+          <p className="font-bold tracking-wider text-white uppercase">
+            {data.name}
+          </p>
+          <p className="text-primary/90 font-mono">
+            {Number(data.val).toFixed(4)}%
+          </p>
         </div>
       );
     }
@@ -46,7 +50,7 @@ const MRDistributionShape = ({
   return (
     <Rectangle
       {...props}
-      className={cn("cursor-pointer opacity-100 transition-opacity", {
+      className={cn("cursor-pointer transition-all duration-300", {
         "opacity-40": name !== activeMrRange && activeMrRange !== "ALL",
       })}
     />
@@ -61,8 +65,8 @@ export const PopularityRow: React.FC<PopularityRowProps> = ({
   const chartData = useMemo(
     () => [
       { name: "0-10", val: item.mrRanges["0-10"], fill: MR_COLORS["0-10"] },
-      { name: "11-20", val: item.mrRanges["11-20"], fill: MR_COLORS["11-20"] },
-      { name: "21+", val: item.mrRanges["21+"], fill: MR_COLORS["21+"] },
+      { name: "11-20", val: item.mrRanges["11-20"], fill: "#00f5ff" }, // Use accent Teal
+      { name: "21+", val: item.mrRanges["21+"], fill: "#c8a45c" }, // Use primary Gold
     ],
     [item.mrRanges],
   );
@@ -70,7 +74,7 @@ export const PopularityRow: React.FC<PopularityRowProps> = ({
   const trendContent = useMemo(() => {
     if (item.previousRank === undefined) {
       return (
-        <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800">
+        <span className="bg-accent/10 text-accent/80 border-accent/10 inline-flex items-center rounded-sm border px-1 py-0.5 text-xs font-bold tracking-tighter">
           NEW
         </span>
       );
@@ -80,8 +84,8 @@ export const PopularityRow: React.FC<PopularityRowProps> = ({
 
     if (diff > 0) {
       return (
-        <span className="flex items-center gap-1 font-medium text-green-600">
-          <TrendingUp className="h-3 w-3" />
+        <span className="flex items-center justify-center gap-0.5 font-mono text-sm font-bold text-emerald-500/60">
+          <ArrowUp className="size-4" />
           {diff}
         </span>
       );
@@ -89,52 +93,65 @@ export const PopularityRow: React.FC<PopularityRowProps> = ({
 
     if (diff < 0) {
       return (
-        <span className="flex items-center gap-1 font-medium text-red-600">
-          <TrendingDown className="h-3 w-3" />
+        <span className="flex items-center justify-center gap-0.5 font-mono text-sm font-bold text-rose-500/60">
+          <ArrowDown className="size-4" />
           {Math.abs(diff)}
         </span>
       );
     }
 
     return (
-      <span className="flex items-center justify-center text-gray-400">
-        <Minus className="h-3 w-3" />
+      <span className="flex items-center justify-center text-white/50">
+        <Minus className="size-4" />
       </span>
     );
   }, [item.rank, item.previousRank]);
 
+  const rankColorClass = useMemo(() => {
+    if (item.rank === 1) return "text-primary/90 font-black";
+    if (item.rank === 2) return "text-gray-400 font-bold";
+    if (item.rank === 3) return "text-orange-400/60 font-bold";
+    return "text-white/50 font-medium";
+  }, [item.rank]);
+
   return (
-    <tr className="transition-colors hover:bg-gray-50/50">
-      <td className="px-4 py-4 font-mono text-gray-400">#{item.rank}</td>
-      <td className="px-4 py-4 text-center">{trendContent}</td>
-      <td className="px-4 py-4 font-semibold text-gray-900">
-        <div className="flex items-center justify-start gap-2 pr-2">
-          {item.imageUrl ? (
-            <img
-              src={item.imageUrl}
-              width={32}
-              height={32}
-              className="size-8"
-              alt={item.name}
-            />
-          ) : (
-            <div className="flex size-8 items-center justify-center rounded bg-gray-100 text-[10px] font-bold text-gray-400">
-              {item.name.substring(0, 2).toUpperCase()}
-            </div>
-          )}
-          <div>{item.name}</div>
+    <tr className="group transition-colors hover:bg-white/1">
+      <td className={cn("px-4 py-3 font-mono md:px-6 md:py-4", rankColorClass)}>
+        #{item.rank}
+      </td>
+      <td className="px-4 py-3 text-center md:px-6 md:py-4">{trendContent}</td>
+      <td className="px-4 py-3 md:px-6 md:py-4">
+        <div className="flex items-center justify-start gap-3 md:gap-4">
+          <div className="relative shrink-0">
+            {item.imageUrl ? (
+              <img
+                src={item.imageUrl}
+                width={40}
+                height={40}
+                className="bg-background/80 size-10 rounded-sm object-contain transition-transform duration-300 md:size-12"
+                alt={item.name}
+              />
+            ) : (
+              <div className="flex size-10 items-center justify-center rounded-sm border border-white/5 bg-white/3 text-sm font-black tracking-tighter text-white/10 uppercase md:size-12">
+                {item.name.substring(0, 2)}
+              </div>
+            )}
+          </div>
+          <div className="group-hover:text-primary text-xs font-bold tracking-tight text-white/80 uppercase transition-colors duration-200 md:text-sm">
+            {item.name}
+          </div>
         </div>
       </td>
-      <td className="px-4 py-4 text-right font-mono text-blue-600">
+      <td className="text-accent/60 px-4 py-3 text-right font-mono text-sm font-bold md:px-6 md:py-4 md:text-xs">
         {item.usage.toFixed(4)}%
       </td>
-      <td className="px-4 py-2 text-right">
-        <div className="h-12 w-full min-w-30 **:focus:outline-0">
-          <ResponsiveContainer width="100%" height={54}>
+      <td className="px-4 py-2 text-right md:px-6">
+        <div className="h-10 w-full min-w-25 **:focus:outline-0 md:h-12 md:min-w-32">
+          <ResponsiveContainer width="100%" height={40}>
             <BarChart data={chartData}>
               <Bar
                 dataKey="val"
-                radius={[2, 2, 0, 0]}
+                radius={[1, 1, 0, 0]}
                 onClick={(v) => onClick(v.name as MRRange)}
                 shape={(p: BarShapeProps) =>
                   MRDistributionShape({ ...p, activeMrRange })
@@ -143,6 +160,7 @@ export const PopularityRow: React.FC<PopularityRowProps> = ({
               <Tooltip
                 cursor={{ fill: "transparent" }}
                 content={<TooltipContent />}
+                animationDuration={100}
               />
             </BarChart>
           </ResponsiveContainer>

@@ -84,23 +84,26 @@ export const PopularityDashboard: React.FC = () => {
   );
 
   return (
-    <div className="mx-auto max-w-6xl space-y-8 p-4 md:p-6">
-      <header className="space-y-4">
-        <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
-          Warframe Usage Stats {selectedYear}
+    <div className="mx-auto max-w-6xl space-y-8 p-4 pt-12 md:space-y-12 md:p-12">
+      <header className="space-y-3 text-center md:space-y-4">
+        <h1 className="text-3xl font-black tracking-tighter md:text-5xl lg:text-6xl">
+          <span className="gold-gradient-text uppercase">Warframe</span>
+          <span className="ml-2 font-light text-white/80 md:ml-3">
+            Usage Stats
+          </span>
         </h1>
-        <p className="text-sm text-gray-500 md:text-base">
-          Most popular items across different Mastery Rank ranges.
+        <p className="mx-auto max-w-2xl text-sm font-medium tracking-[0.15em] text-white/30 uppercase md:text-xs">
+          Comprehensive analysis of equipment deployment across the system
         </p>
       </header>
 
-      <div className="flex flex-wrap items-end gap-4">
-        <div className="w-full space-y-2 sm:w-auto">
-          <label htmlFor="year-select" className="text-sm font-medium">
-            Year
+      <div className="glass flex flex-col items-stretch gap-6 rounded-2xl p-4 shadow-xl sm:p-6 md:flex-row md:items-center md:justify-center md:gap-8">
+        <div className="space-y-2.5 md:space-y-3">
+          <label className="text-primary block text-center text-sm font-bold tracking-widest uppercase md:text-sm">
+            Timeline
           </label>
           <div
-            className="flex w-full rounded-md border border-gray-300 bg-gray-50 p-1 sm:w-auto"
+            className="no-scrollbar flex overflow-x-auto rounded-lg bg-black/30 p-1"
             role="group"
           >
             {years.map((year) => (
@@ -109,10 +112,10 @@ export const PopularityDashboard: React.FC = () => {
                 onClick={() => setSelectedYear(year)}
                 aria-pressed={selectedYear === year}
                 disabled={isLoading}
-                className={`flex-1 rounded-sm px-3 py-1 text-sm shadow-sm transition-all disabled:cursor-not-allowed disabled:opacity-50 sm:w-16 sm:flex-none ${
+                className={`min-w-14 flex-1 rounded-md px-3 py-1.5 text-sm font-bold tracking-tight transition-all disabled:opacity-50 md:min-w-16 md:px-4 md:text-xs ${
                   selectedYear === year
-                    ? "bg-white font-medium text-blue-600"
-                    : "text-gray-600 shadow-transparent hover:text-gray-900"
+                    ? "bg-primary text-black"
+                    : "text-white/50 hover:text-white"
                 }`}
               >
                 {year}
@@ -121,32 +124,39 @@ export const PopularityDashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full space-y-2 sm:w-auto">
-          <label htmlFor="category-select" className="text-sm font-medium">
-            Category
+        <div className="hidden h-10 w-px bg-white/5 md:block" />
+
+        <div className="space-y-2.5 md:space-y-3">
+          <label
+            htmlFor="category-select"
+            className="text-primary block text-center text-sm font-bold tracking-widest uppercase md:text-sm"
+          >
+            Classification
           </label>
           <select
             id="category-select"
-            aria-label="Select item category"
             value={category}
             onChange={handleCategoryChange}
             disabled={isLoading}
-            className="flex h-10 w-full cursor-pointer rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 sm:w-48"
+            className="focus:ring-primary h-9 w-full cursor-pointer rounded-lg border border-white/5 bg-black/30 px-4 text-sm font-bold tracking-tight text-white focus:ring-1 focus:outline-none md:w-44 md:text-xs"
           >
             {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
+              <option key={cat} value={cat} className="bg-surface">
+                {cat.toUpperCase()}
               </option>
             ))}
           </select>
         </div>
 
-        <div className="w-full space-y-2 sm:w-auto">
-          <span className="text-sm font-medium">MR Range</span>
+        <div className="hidden h-10 w-px bg-white/5 md:block" />
+
+        <div className="space-y-2.5 md:space-y-3">
+          <label className="text-primary block text-center text-sm font-bold tracking-widest uppercase md:text-sm">
+            Mastery Tier
+          </label>
           <div
-            className="flex w-full rounded-md border border-gray-300 bg-gray-50 p-1 sm:w-auto"
+            className="no-scrollbar flex overflow-x-auto rounded-lg bg-black/30 p-1"
             role="group"
-            aria-label="Select MR Range"
           >
             {MR_RANGES.map((range) => (
               <button
@@ -154,10 +164,10 @@ export const PopularityDashboard: React.FC = () => {
                 onClick={() => setMrRange(range)}
                 aria-pressed={mrRange === range}
                 disabled={isLoading}
-                className={`flex-1 rounded-sm px-3 py-1 text-sm shadow-sm transition-all disabled:cursor-not-allowed disabled:opacity-50 sm:w-16 sm:flex-none ${
+                className={`min-w-14 flex-1 rounded-md px-3 py-1.5 text-sm font-bold tracking-tight transition-all disabled:opacity-50 md:min-w-16 md:px-4 md:text-xs md:whitespace-nowrap ${
                   mrRange === range
-                    ? "bg-white font-medium text-blue-600"
-                    : "text-gray-600 shadow-transparent hover:text-gray-900"
+                    ? "bg-primary text-black"
+                    : "text-white/50 hover:text-white"
                 }`}
               >
                 {range}
@@ -167,46 +177,50 @@ export const PopularityDashboard: React.FC = () => {
         </div>
       </div>
 
-      <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
+      <div className="glass overflow-hidden rounded-2xl shadow-xl">
         {isLoading ? (
-          <div className="p-12 text-center text-gray-500">
-            <div className="mr-2 inline-block h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600" />
-            Loading...
+          <div className="flex flex-col items-center justify-center space-y-4 p-16 md:p-24">
+            <div className="border-primary h-10 w-10 animate-spin rounded-full border-2 border-t-transparent" />
+            <p className="text-primary animate-pulse text-sm font-bold tracking-[0.2em] uppercase">
+              Synchronizing Codex...
+            </p>
           </div>
         ) : error ? (
-          <div className="p-12 text-center">
-            <p className="mb-2 text-red-600">Error loading data</p>
-            <p className="text-sm text-gray-500">{error}</p>
+          <div className="p-16 text-center md:p-24">
+            <p className="mb-3 text-xs font-bold tracking-tight text-red-400 uppercase">
+              Archive Link Severed
+            </p>
+            <p className="mb-6 text-sm text-white/30">{error}</p>
             <button
               onClick={() => loadData(selectedYear)}
-              className="mt-4 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+              className="border-primary/10 bg-primary/5 text-primary hover:bg-primary/10 rounded-lg border px-6 py-2.5 text-sm font-bold tracking-widest transition-all"
             >
-              Retry
+              RESTORE LINK
             </button>
           </div>
         ) : data.length > 0 ? (
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px] text-sm">
-              <thead className="border-b border-gray-200 bg-gray-50">
-                <tr>
-                  <th className="w-16 px-4 py-3 text-left font-medium text-gray-500">
+          <div className="no-scrollbar overflow-x-auto">
+            <table className="w-full min-w-160 border-separate border-spacing-0 text-sm">
+              <thead>
+                <tr className="bg-black/20">
+                  <th className="w-16 px-4 py-4 text-left text-sm font-bold tracking-widest text-white/30 uppercase md:w-20 md:px-6">
                     Rank
                   </th>
-                  <th className="w-20 px-4 py-3 text-center font-medium text-gray-500">
+                  <th className="w-20 px-4 py-4 text-center text-sm font-bold tracking-widest text-white/30 uppercase md:w-24 md:px-6">
                     Trend
                   </th>
-                  <th className="px-4 py-3 text-left font-medium text-gray-500">
-                    Name
+                  <th className="px-4 py-4 text-left text-sm font-bold tracking-widest text-white/30 uppercase md:px-6">
+                    Archive Entry
                   </th>
-                  <th className="w-24 px-4 py-3 text-right font-medium text-gray-500">
+                  <th className="w-28 px-4 py-4 text-right text-sm font-bold tracking-widest text-white/30 uppercase md:w-32 md:px-6">
                     Usage
                   </th>
-                  <th className="w-48 px-4 py-3 text-right font-medium text-gray-500">
-                    MR Distribution
+                  <th className="w-48 px-4 py-4 text-right text-sm font-bold tracking-widest text-white/30 uppercase md:w-56 md:px-6">
+                    Distribution
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-white/3">
                 {data.map((item, index) => (
                   <PopularityRow
                     key={`${category}-${item.name}`}
@@ -220,8 +234,10 @@ export const PopularityDashboard: React.FC = () => {
             </table>
           </div>
         ) : (
-          <div className="p-12 text-center text-gray-500">
-            No data available for this selection.
+          <div className="p-16 text-center md:p-24">
+            <p className="text-sm font-bold tracking-[0.2em] text-white/20 uppercase">
+              No Records Found
+            </p>
           </div>
         )}
       </div>

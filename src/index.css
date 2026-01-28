@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+@theme {
+  --color-background: #323232;
+  --color-surface: #161b22;
+  --color-primary: #c8a45c;
+  --color-accent: #00f5ff;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-gray-100;
+  }
+}
+
+.glass {
+  @apply border border-white/5 bg-white/3 backdrop-blur-sm;
+}
+
+.gold-gradient-text {
+  @apply from-primary to-primary/80 bg-linear-to-b bg-clip-text text-transparent;
+}

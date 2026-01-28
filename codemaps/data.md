@@ -6,6 +6,7 @@
 ## Key Interfaces
 
 ### UI Consumption
+
 ```typescript
 interface DataItem {
   name: string;
@@ -22,6 +23,7 @@ interface DataItem {
 ```
 
 ### Raw Asset Schema
+
 ```typescript
 interface RootData {
   ALL: {
@@ -29,9 +31,9 @@ interface RootData {
       [itemName: string]: {
         ALL: number;
         [mrNumeric: string]: number; // "0" to "36+"
-      }
-    }
-  }
+      };
+    };
+  };
 }
 ```
 

@@ -7,13 +7,13 @@
 
 The application processes raw hierarchical usage data on the client side.
 
-| Process | Description |
-|---------|-------------|
-| **Loading** | Fetches `/WarframeUsageData{year}.json`. Uses `fetch()` to load static assets. |
+| Process         | Description                                                                              |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| **Loading**     | Fetches `/WarframeUsageData{year}.json`. Uses `fetch()` to load static assets.           |
 | **Aggregation** | `aggregateMRUsage` compresses 37+ MR entries into 3 buckets: "0-10", "11-20", and "21+". |
-| **Grouping** | For Warframes, base and Prime/Umbra variants are merged into a single root entry. |
-| **Ranking** | Sorts items by usage percentage after aggregation. |
-| **Trends** | Compares `currentData` rank vs `previousData` rank to determine movement. |
+| **Grouping**    | For Warframes, base and Prime/Umbra variants are merged into a single root entry.        |
+| **Ranking**     | Sorts items by usage percentage after aggregation.                                       |
+| **Trends**      | Compares `currentData` rank vs `previousData` rank to determine movement.                |
 
 ## Data Mapping
 

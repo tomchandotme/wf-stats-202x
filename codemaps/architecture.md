@@ -20,13 +20,13 @@ This is a multi-year dashboard for visualizing Warframe item usage data (2022-20
 
 ## Key Modules
 
-| Module | Purpose | Location |
-|--------|---------|----------|
-| `App` | Base layout and footer | `src/App.tsx` |
-| `PopularityDashboard` | Main dashboard with multi-year filter, category selection, and rank/trend display | `src/components/PopularityDashboard.tsx` |
-| `PopularityRow` | Table row component showing item rank, trend, name, usage percentage, and MR distribution | `src/components/PopularityRow.tsx` |
-| `dataLoader` | Dynamic fetching from static assets, data aggregation (MR bucketing), and ranking logic | `src/utils/dataLoader.ts` |
-| `types` | Application-wide TypeScript definitions | `src/types.ts` |
+| Module                | Purpose                                                                                   | Location                                 |
+| --------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------- |
+| `App`                 | Base layout and footer                                                                    | `src/App.tsx`                            |
+| `PopularityDashboard` | Main dashboard with multi-year filter, category selection, and rank/trend display         | `src/components/PopularityDashboard.tsx` |
+| `PopularityRow`       | Table row component showing item rank, trend, name, usage percentage, and MR distribution | `src/components/PopularityRow.tsx`       |
+| `dataLoader`          | Dynamic fetching from static assets, data aggregation (MR bucketing), and ranking logic   | `src/utils/dataLoader.ts`                |
+| `types`               | Application-wide TypeScript definitions                                                   | `src/types.ts`                           |
 
 ## Technical Stack
 
