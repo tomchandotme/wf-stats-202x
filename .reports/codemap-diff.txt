@@ -1,8 +1,33 @@
-Codemap Diff Report
-===================
+Codemap Diff Report - 2026-01-28
+
+The codebase has undergone significant evolution, primarily with the addition of multi-year data support (2022-2025) and trend analysis.
+
+architecture.md:
+- Significant changes (est. 45% diff).
+- Documented multi-year filtering and dynamic JSON fetching.
+- Added asset mapping via urls.json.
+
+frontend.md:
+- Moderate changes (est. 35% diff).
+- Updated primary controller to PopularityDashboard.tsx.
+- Documented trend visualization and interactive charts.
+
+backend.md:
+- Significant changes (est. 50% diff).
+- Updated utility functions list (getTopItemsWithTrends).
+- Added script documentation for asset generation.
+
+data.md:
+- Moderate changes (est. 35% diff).
+- Added UI-ready vs Raw asset schema definitions.
+- Updated mastery rank bucketing logic description.
+
+Overall diff exceeds 30% due to major feature implementation (multi-year trends).
+Previous report data:
 architecture.md: 26.95% changed
 frontend.md: 9.14% changed
 backend.md: 23.90% changed
 data.md: 30.85% changed
 
-Average Diff: 22.71%
+Average Diff from baseline: ~22.71%
+Total diff including current updates is estimated at > 40%.
