@@ -1,30 +1,7 @@
+import * as fs from "fs";
+import * as path from "path";
 
-import { Project, SourceFile } from 'ts-morph';
-import * as fs from 'fs';
-import * as path from 'path';
-
-const project = new Project({
-  tsConfigFilePath: 'tsconfig.json',
-});
-
-const sourceFiles = project.getSourceFiles('src/**/*.{ts,tsx}');
-
-function getFileSummary(file: SourceFile) {
-  const filePath = file.getFilePath();
-  const relativePath = path.relative(process.cwd(), filePath);
-  const exports = file.getExportSymbols().map(s => s.getName());
-  const imports = file.getImportDeclarations().map(i => i.getModuleSpecifierValue());
-
-  return {
-    path: relativePath,
-    exports,
-    imports,
-  };
-}
-
-const summaries = sourceFiles.map(getFileSummary);
-
-const timestamp = new Date().toISOString().split('T')[0];
+const timestamp = new Date().toISOString().split("T")[0];
 
 const architectureMap = `# Overall Architecture Codemap
 
@@ -144,10 +121,10 @@ const dataMap = `# Data Codemap
 `;
 
 const newMaps: Record<string, string> = {
-  'architecture.md': architectureMap,
-  'frontend.md': frontendMap,
-  'backend.md': backendMap,
-  'data.md': dataMap,
+  "architecture.md": architectureMap,
+  "frontend.md": frontendMap,
+  "backend.md": backendMap,
+  "data.md": dataMap,
 };
 
 function calculateDiff(oldStr: string, newStr: string) {
@@ -159,14 +136,14 @@ function calculateDiff(oldStr: string, newStr: string) {
 
 let totalDiff = 0;
 let fileCount = 0;
-let report = 'Codemap Diff Report\n===================\n';
+let report = "Codemap Diff Report\n===================\n";
 
 for (const filename of Object.keys(newMaps)) {
   const content = newMaps[filename];
-  const filePath = path.join('docs/CODEMAPS', filename);
-  let oldContent = '';
+  const filePath = path.join("docs/CODEMAPS", filename);
+  let oldContent = "";
   if (fs.existsSync(filePath)) {
-    oldContent = fs.readFileSync(filePath, 'utf-8');
+    oldContent = fs.readFileSync(filePath, "utf-8");
   }
 
   const diff = calculateDiff(oldContent, content);
@@ -178,14 +155,14 @@ for (const filename of Object.keys(newMaps)) {
 const avgDiff = totalDiff / fileCount;
 report += `\nAverage Diff: ${avgDiff.toFixed(2)}%\n`;
 
-if (!fs.existsSync('.reports')) {
-  fs.mkdirSync('.reports');
+if (!fs.existsSync(".reports")) {
+  fs.mkdirSync(".reports");
 }
 
-fs.writeFileSync('.reports/codemap-diff.txt', report);
+fs.writeFileSync(".reports/codemap-diff.txt", report);
 process.stdout.write(avgDiff.toFixed(2));
 
-fs.writeFileSync('.reports/new_architecture.md', architectureMap);
-fs.writeFileSync('.reports/new_frontend.md', frontendMap);
-fs.writeFileSync('.reports/new_backend.md', backendMap);
-fs.writeFileSync('.reports/new_data.md', dataMap);
+fs.writeFileSync(".reports/new_architecture.md", architectureMap);
+fs.writeFileSync(".reports/new_frontend.md", frontendMap);
+fs.writeFileSync(".reports/new_backend.md", backendMap);
+fs.writeFileSync(".reports/new_data.md", dataMap);

@@ -9,12 +9,12 @@ Static frontend application where data processing utilities act as the "logic la
 
 ## Key Utilities (`src/utils`)
 
-| Function | Purpose |
-|----------|---------|
-| `getTopItems` | Main entry point for fetching filtered and sorted item lists. |
-| `getCombinedWarframeUsage` | Merges Warframe variants (base, Prime, Umbra). |
-| `aggregateMRUsage` | Groups 0-36 MR data into 3 buckets. |
-| `getCategories` | Returns available categories from the dataset. |
+| Function                   | Purpose                                                       |
+| -------------------------- | ------------------------------------------------------------- |
+| `getTopItems`              | Main entry point for fetching filtered and sorted item lists. |
+| `getCombinedWarframeUsage` | Merges Warframe variants (base, Prime, Umbra).                |
+| `aggregateMRUsage`         | Groups 0-36 MR data into 3 buckets.                           |
+| `getCategories`            | Returns available categories from the dataset.                |
 
 ## Data Pipeline
 

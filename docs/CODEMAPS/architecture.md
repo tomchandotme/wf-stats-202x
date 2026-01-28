@@ -14,13 +14,13 @@ This is a single-page application (SPA) focused on visualizing Warframe item usa
 
 ## Key Modules
 
-| Module | Purpose | Location |
-|--------|---------|----------|
-| `main.tsx` | App entry point | `src/main.tsx` |
-| `App.tsx` | Root component | `src/App.tsx` |
+| Module                | Purpose                                | Location                                 |
+| --------------------- | -------------------------------------- | ---------------------------------------- |
+| `main.tsx`            | App entry point                        | `src/main.tsx`                           |
+| `App.tsx`             | Root component                         | `src/App.tsx`                            |
 | `PopularityDashboard` | Main dashboard UI and state management | `src/components/PopularityDashboard.tsx` |
-| `PopularityRow` | Table row with Recharts visualization | `src/components/PopularityRow.tsx` |
-| `dataLoader.ts` | Data processing and aggregation logic | `src/utils/dataLoader.ts` |
+| `PopularityRow`       | Table row with Recharts visualization  | `src/components/PopularityRow.tsx`       |
+| `dataLoader.ts`       | Data processing and aggregation logic  | `src/utils/dataLoader.ts`                |
 
 ## Technical Stack
 

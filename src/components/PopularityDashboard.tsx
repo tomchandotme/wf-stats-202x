@@ -43,7 +43,7 @@ export const PopularityDashboard: React.FC = () => {
         </p>
       </header>
 
-      <div className="flex flex-col items-end gap-4 sm:flex-row">
+      <div className="flex flex-col items-start gap-4 sm:flex-row">
         <div className="space-y-2">
           <label htmlFor="category-select" className="text-sm font-medium">
             Category
