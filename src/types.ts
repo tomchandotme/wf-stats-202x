@@ -1,7 +1,25 @@
+export type MRRange = "0-10" | "11-20" | "21+" | "ALL";
+
+export interface DataItem {
+  name: string;
+  usage: number;
+  mrRanges: {
+    "0-10": number;
+    "11-20": number;
+    "21+": number;
+  };
+}
+
+export interface ChartDataPoint {
+  name: string;
+  val: number;
+  fill: string;
+}
+
 export interface MRRangeUsage {
-  '0-10': number;
-  '11-20': number;
-  '21+': number;
+  "0-10": number;
+  "11-20": number;
+  "21+": number;
 }
 
 export interface ItemUsage {
@@ -19,7 +37,7 @@ export interface RootData {
   ALL: UsageReport;
 }
 
-export type CategoryType = 'Melee' | 'Primary' | 'Secondary' | 'Warframe';
+export type CategoryType = "Melee" | "Primary" | "Secondary" | "Warframe";
 
 export interface ChartDataPoint {
   mr: string;

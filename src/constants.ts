@@ -1,0 +1,10 @@
+import { type MRRange } from "./types";
+
+export const MR_RANGES: MRRange[] = ["ALL", "0-10", "11-20", "21+"];
+
+// Colors for MR ranges to make them distinct
+export const MR_COLORS = {
+  "0-10": "#3b82f6", // Blue
+  "11-20": "#10b981", // Green
+  "21+": "#f59e0b", // Amber
+};

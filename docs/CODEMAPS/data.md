@@ -29,9 +29,12 @@ The application processes Warframe usage statistics provided in a nested JSON fo
 ## Transformations
 
 ### Warframe Grouping
+
 The `getCombinedWarframeUsage` utility collapses variants into root names:
+
 - Input: `Excalibur`, `Excalibur Prime`, `Excalibur Umbra`
 - Output: `Excalibur/Prime/Umbra` (Summed usage)
 
 ### MR Aggregation
+
 Granular MR levels (0-36) are bucketed into three main tiers for better visualization density.

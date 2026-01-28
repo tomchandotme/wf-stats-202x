@@ -9,12 +9,12 @@ This project does not have a traditional server-side backend. It is a static fro
 
 ## Data Processing API (Internal)
 
-| Function | Purpose |
-|----------|---------|
-| `getAllData` | Returns the entire `ALL` category from the dataset. |
+| Function                   | Purpose                                                   |
+| -------------------------- | --------------------------------------------------------- |
+| `getAllData`               | Returns the entire `ALL` category from the dataset.       |
 | `getCombinedWarframeUsage` | Aggregates base and variant (Prime/Umbra) Warframe usage. |
-| `aggregateMRUsage` | Groups granular MR data into ranges: 0-10, 11-20, 21+. |
-| `getAggregatedItemUsage` | Combines item lookup with MR aggregation. |
+| `aggregateMRUsage`         | Groups granular MR data into ranges: 0-10, 11-20, 21+.    |
+| `getAggregatedItemUsage`   | Combines item lookup with MR aggregation.                 |
 
 ## Build and Deployment
 

@@ -14,13 +14,13 @@ This is a single-page application (SPA) focused on visualizing Warframe item usa
 
 ## Key Modules
 
-| Module | Purpose | Location |
-|--------|---------|----------|
-| `main.tsx` | App entry point, React root mounting | `src/main.tsx` |
-| `App.tsx` | Main application component, handles data display | `src/App.tsx` |
-| `dataLoader.ts` | Utilities for parsing and aggregating usage data | `src/utils/dataLoader.ts` |
-| `types.ts` | TypeScript interface definitions for the data model | `src/types.ts` |
-| `cn.ts` | Utility for Tailwind class merging | `src/utils/cn.ts` |
+| Module          | Purpose                                             | Location                  |
+| --------------- | --------------------------------------------------- | ------------------------- |
+| `main.tsx`      | App entry point, React root mounting                | `src/main.tsx`            |
+| `App.tsx`       | Main application component, handles data display    | `src/App.tsx`             |
+| `dataLoader.ts` | Utilities for parsing and aggregating usage data    | `src/utils/dataLoader.ts` |
+| `types.ts`      | TypeScript interface definitions for the data model | `src/types.ts`            |
+| `cn.ts`         | Utility for Tailwind class merging                  | `src/utils/cn.ts`         |
 
 ## Technical Stack
 
