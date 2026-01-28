@@ -8,12 +8,9 @@ export interface DataItem {
     "11-20": number;
     "21+": number;
   };
-}
-
-export interface ChartDataPoint {
-  name: string;
-  val: number;
-  fill: string;
+  rank?: number;
+  previousRank?: number;
+  imageUrl?: string;
 }
 
 export interface MRRangeUsage {
@@ -42,4 +39,10 @@ export type CategoryType = "Melee" | "Primary" | "Secondary" | "Warframe";
 export interface ChartDataPoint {
   mr: string;
   percentage: number;
+}
+
+export interface YearTrend {
+  name: string;
+  rank: number;
+  usage: number;
 }
