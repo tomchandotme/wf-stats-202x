@@ -77,10 +77,10 @@ export const PopularityDashboard: React.FC = () => {
                 onClick={() => setMrRange(range)}
                 aria-pressed={mrRange === range}
                 disabled={isLoading}
-                className={`rounded-sm px-3 py-1 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
+                className={`w-16 rounded-sm px-3 py-1 text-sm shadow-sm transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
                   mrRange === range
-                    ? "bg-white font-medium text-blue-600 shadow-sm"
-                    : "text-gray-600 hover:text-gray-900"
+                    ? "bg-white font-medium text-blue-600"
+                    : "text-gray-600 shadow-transparent hover:text-gray-900"
                 }`}
               >
                 {range}
