@@ -14,7 +14,7 @@ This dashboard uses a **Mastery Rank Weighted Aggregation** approach:
 
 1.  **Weight Discovery**: We solved a linear system `global_usage = sum(weight_i * usage_at_mr_i)` across thousands of items to discover the relative population weights `W_0...W_36` of the Warframe player base.
 2.  **Range Averaging**: Usage for a range (like "0-10") is calculated as a weighted average: `(sum(usage_i * weight_i)) / sum(weight_i)`.
-3.  **Correctness**: This ensures that "0-10" usage reflects the actual popularity of an item *within that specific population tier*, consistent with the global average.
+3.  **Correctness**: This ensures that "0-10" usage reflects the actual popularity of an item _within that specific population tier_, consistent with the global average.
 
 ## Methodology: Smart Grouping
 

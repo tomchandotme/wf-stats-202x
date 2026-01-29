@@ -82,9 +82,16 @@ export const aggregateMRUsage = (usage: ItemUsage): MRRangeUsage => {
   });
 
   return {
-    "0-10": ranges["0-10"].weight > 0 ? ranges["0-10"].usage / ranges["0-10"].weight : 0,
-    "11-20": ranges["11-20"].weight > 0 ? ranges["11-20"].usage / ranges["11-20"].weight : 0,
-    "21+": ranges["21+"].weight > 0 ? ranges["21+"].usage / ranges["21+"].weight : 0,
+    "0-10":
+      ranges["0-10"].weight > 0
+        ? ranges["0-10"].usage / ranges["0-10"].weight
+        : 0,
+    "11-20":
+      ranges["11-20"].weight > 0
+        ? ranges["11-20"].usage / ranges["11-20"].weight
+        : 0,
+    "21+":
+      ranges["21+"].weight > 0 ? ranges["21+"].usage / ranges["21+"].weight : 0,
   };
 };
 
