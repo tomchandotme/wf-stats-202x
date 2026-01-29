@@ -28,7 +28,7 @@ const TooltipContent = React.memo(
       return (
         <div className="bg-surface rounded border border-white/5 px-2 py-1.5 text-sm shadow-md backdrop-blur-sm">
           <p className="font-bold tracking-wider text-white uppercase">
-            {data.name}
+            MR {data.name} Average Usage
           </p>
           <p className="text-primary/90 font-mono">
             {Number(data.val).toFixed(4)}%
