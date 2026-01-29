@@ -93,7 +93,7 @@ export const PopularityDashboard: React.FC = () => {
           </span>
         </h1>
         <p className="mx-auto max-w-2xl text-sm font-medium tracking-[0.15em] text-white/30 uppercase md:text-xs">
-          Comprehensive analysis of equipment deployment across the system
+          Comprehensive analysis of equipment weighted by Mastery Rank population
         </p>
       </header>
 

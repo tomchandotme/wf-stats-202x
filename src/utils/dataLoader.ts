@@ -6,6 +6,7 @@ import type {
   DataItem,
 } from "../types";
 import urls from "../../data/urls.json";
+import { MR_WEIGHTS } from "../constants/mrWeights";
 
 const dataCache: Record<number, RootData> = {};
 
@@ -47,29 +48,44 @@ export const getCategories = (data: RootData) => Object.keys(data.ALL);
 
 /**
  * Aggregates Mastery Rank usage data into predefined ranges.
- * Functional approach to avoid mutation.
+ * Uses weighted averages to ensure mathematical correctness.
  *
  * @param usage - The usage data for an item.
  * @returns An object containing the aggregated usage for each MR range.
  */
 export const aggregateMRUsage = (usage: ItemUsage): MRRangeUsage => {
-  return Object.entries(usage).reduce(
-    (acc, [mr, value]) => {
-      if (mr === "ALL") return acc;
+  const ranges = {
+    "0-10": { usage: 0, weight: 0 },
+    "11-20": { usage: 0, weight: 0 },
+    "21+": { usage: 0, weight: 0 },
+  };
 
-      const mrNum = parseInt(mr, 10);
-      if (isNaN(mrNum)) return acc;
+  Object.entries(usage).forEach(([mr, value]) => {
+    if (mr === "ALL") return;
 
-      if (mrNum <= 10) {
-        return { ...acc, "0-10": acc["0-10"] + value };
-      } else if (mrNum <= 20) {
-        return { ...acc, "11-20": acc["11-20"] + value };
-      } else {
-        return { ...acc, "21+": acc["21+"] + value };
-      }
-    },
-    { "0-10": 0, "11-20": 0, "21+": 0 } as MRRangeUsage,
-  );
+    const mrNum = parseInt(mr, 10);
+    if (isNaN(mrNum)) return;
+
+    const weight = MR_WEIGHTS[mrNum] || 0;
+    const weightedUsage = value * weight;
+
+    if (mrNum <= 10) {
+      ranges["0-10"].usage += weightedUsage;
+      ranges["0-10"].weight += weight;
+    } else if (mrNum <= 20) {
+      ranges["11-20"].usage += weightedUsage;
+      ranges["11-20"].weight += weight;
+    } else {
+      ranges["21+"].usage += weightedUsage;
+      ranges["21+"].weight += weight;
+    }
+  });
+
+  return {
+    "0-10": ranges["0-10"].weight > 0 ? ranges["0-10"].usage / ranges["0-10"].weight : 0,
+    "11-20": ranges["11-20"].weight > 0 ? ranges["11-20"].usage / ranges["11-20"].weight : 0,
+    "21+": ranges["21+"].weight > 0 ? ranges["21+"].usage / ranges["21+"].weight : 0,
+  };
 };
 
 /**
