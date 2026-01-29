@@ -83,7 +83,7 @@ export const MRPopulationChart: React.FC = () => {
         </div>
       </div>
 
-      <div className="h-35 w-full">
+      <div className="h-35 w-full **:focus:outline-0">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
