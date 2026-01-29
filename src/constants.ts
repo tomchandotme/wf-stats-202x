@@ -7,4 +7,5 @@ export const MR_COLORS = {
   "0-10": "#3b82f6", // Blue
   "11-20": "#10b981", // Green
   "21+": "#f59e0b", // Amber
+  LR: "#a855f7", // Legendary (31-36) - Purple
 };

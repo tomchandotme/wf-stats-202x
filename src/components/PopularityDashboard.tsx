@@ -5,6 +5,7 @@ import {
   getTopItemsWithTrends,
 } from "../utils/dataLoader";
 import { PopularityRow } from "./PopularityRow";
+import { MRPopulationChart } from "./MRPopulationChart";
 import { MR_RANGES } from "../constants";
 import type { MRRange, RootData } from "../types";
 
@@ -97,6 +98,8 @@ export const PopularityDashboard: React.FC = () => {
           population
         </p>
       </header>
+
+      <MRPopulationChart />
 
       <div className="glass flex flex-col items-stretch gap-6 rounded-2xl p-4 shadow-xl sm:p-6 md:flex-row md:items-center md:justify-center md:gap-8">
         <div className="space-y-2.5 md:space-y-3">

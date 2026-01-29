@@ -1,27 +1,31 @@
 # Frontend Codemap
 
-**Last Updated:** 2026-01-28
+**Last Updated:** 2026-01-29
 **Framework:** React 19.2
 **Main Component:** src/App.tsx
 
 ## UI Structure
 
-The UI is built using React functional components with a focus on data visualization.
+The UI is built using React functional components with a focus on data visualization using Recharts.
 
 ### Components
 
-- **`App`**: Renders the `PopularityDashboard`.
-- **`PopularityDashboard`**: Manages category and MR range selection state. Use `useMemo` for data fetching optimization.
-- **`PopularityRow`**: Displays item details and a small `BarChart` for MR distribution.
-- **Icons**: Lucide-react (if used) or standard SVG.
+- **`App`**: Renders the application container and `PopularityDashboard`.
+- **`PopularityDashboard`**: Central state hub for category selection, MR range filtering, and pagination.
+- **`MRPopulationChart`**: Global chart showing the MR population distribution (generated from `MR_WEIGHTS`).
+- **`PopularityRow`**: Individual item display including:
+  - Rank and trend indicators
+  - Item image (from CDN)
+  - Small `BarChart` for per-bucket MR distribution.
 
 ## Design System
 
 - **Styling:** Tailwind CSS 4.
+- **Glassmorphism:** Custom "glass" classes for cards and tooltips.
 - **Utilities:** `cn()` for class merging.
-- **Responsiveness:** Tailwind's responsive prefixes (sm, md, lg).
+- **Responsiveness:** Tailwind's responsive prefixes; mobile-optimized table rows.
 
 ## State Management
 
-- **Local State:** `useState` in `PopularityDashboard` for filters.
-- **Performance:** `useMemo` and `useCallback` used to prevent unnecessary re-renders in the data table.
+- **Local State:** `useState` in `PopularityDashboard` for navigation and filtering.
+- **Performance:** `useMemo` in components to optimize chart data preparation and prevent unnecessary re-renders during list filtering.

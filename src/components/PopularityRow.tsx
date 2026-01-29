@@ -31,7 +31,7 @@ const TooltipContent = React.memo(
             MR {data.name} Average Usage
           </p>
           <p className="text-primary/90 font-mono">
-            {Number(data.val).toFixed(4)}%
+            {(Number(data.val) * 100).toFixed(2)}%
           </p>
         </div>
       );
@@ -143,7 +143,7 @@ export const PopularityRow: React.FC<PopularityRowProps> = ({
         </div>
       </td>
       <td className="text-accent/60 px-4 py-3 text-right font-mono text-sm font-bold md:px-6 md:py-4 md:text-xs">
-        {item.usage.toFixed(4)}%
+        {(item.usage * 100).toFixed(2)}%
       </td>
       <td className="px-4 py-2 text-right md:px-6">
         <div className="h-10 w-full min-w-25 **:focus:outline-0 md:h-12 md:min-w-32">
