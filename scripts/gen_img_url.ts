@@ -1,4 +1,10 @@
 import Items from "@wfcd/items";
+import { writeFileSync, mkdirSync } from "fs";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const dataDir = resolve(__dirname, "../data");
 
 const items = new Items({
   category: ["Warframes", "Primary", "Secondary", "Melee"],
@@ -20,5 +26,9 @@ items.forEach((v) => {
   }
 });
 
-await Bun.write("/data/urls.json", JSON.stringify(urls, null, 2));
+// Ensure data directory exists
+mkdirSync(dataDir, { recursive: true });
+
+const outputPath = resolve(dataDir, "urls.json");
+writeFileSync(outputPath, JSON.stringify(urls, null, 2));
 console.log("urls.json written to `/data` directory");
