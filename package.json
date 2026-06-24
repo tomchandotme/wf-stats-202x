@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3579",
-    "build": "tsc -b && vite build",
+    "build": "tsx scripts/gen_img_url.ts && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
